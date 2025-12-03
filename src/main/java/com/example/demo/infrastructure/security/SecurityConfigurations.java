@@ -33,9 +33,10 @@ public class SecurityConfigurations {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register"
+                        .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/mensajes/**"
                         )
                         .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/curso/**", "/mensajes/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
