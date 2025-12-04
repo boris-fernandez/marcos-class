@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "TemaForo", schema = "foro")
+@Table(name = "temaforo", schema = "foro")
 @Entity
 @Builder
 public class TemaForo {
@@ -26,6 +26,8 @@ public class TemaForo {
 
     private String titulo;
 
+    private String mensajeInicial;
+
     private Date fechaCreacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,5 +35,7 @@ public class TemaForo {
     private Usuario creador;
 
     private Boolean estado;
+
+    private Integer semana;
 
 }

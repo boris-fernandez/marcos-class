@@ -43,6 +43,8 @@ public class TemaForoService {
                 .fechaCreacion(new Date())
                 .creador(usuario)
                 .estado(true)
+                .mensajeInicial(crearTemaForoDTO.mensajeInicial())
+                .semana(crearTemaForoDTO.semana())
                 .build();
         temaForoRepository.save(temaForo);
         return new TemaForoDTO(temaForo);
@@ -65,7 +67,7 @@ public class TemaForoService {
 
     //MOSTRAR TEMA FORO POR ID
     public TemaForoDTO mostrarTemaForoPorId(Long idForo){
-        return new TemaForoDTO(temaForoRepository.findById(idForo).orElseThrow(() -> new RuntimeException("No existe un foro con este id: " + idForo)));
+        return new TemaForoDTO(temaForoRepository.findById(idForo).orElseThrow(()-> new RuntimeException()));
     }
 
     //ELIMINAR TEMA FORO

@@ -34,6 +34,8 @@ public class Tarea {
 
     private Boolean habilitado;
 
+    private Integer semana;
+
     public void cambiarEstado(){
         setHabilitado(!habilitado);
     }
@@ -43,6 +45,5 @@ public class Tarea {
         if (crearTareaDTO.titulo() != null) setTitulo(crearTareaDTO.titulo());
         if (crearTareaDTO.descripcion() != null) setDescripcion(crearTareaDTO.descripcion());
         if (crearTareaDTO.fechaEntrega() != null) setFechaEntrega(crearTareaDTO.fechaEntrega());
-        if (crearTareaDTO.puntajeMaximo() != null) setPuntajeMaximo(crearTareaDTO.puntajeMaximo());
     }
 }

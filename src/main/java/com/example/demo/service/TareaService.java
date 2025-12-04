@@ -29,11 +29,12 @@ public class TareaService {
     @PreAuthorize("hasAnyRole('PROFESOR', 'ADMIN')")
     public TareDTO crearTarea(CrearTareaDTO crearTareaDTO){
         Tarea tarea = Tarea.builder()
-                .curso(cursoRepository.findByNombre(crearTareaDTO.curso()).orElseThrow(() -> new RuntimeException("No existe un curso con ese nombre: " + crearTareaDTO.curso())))
+                .curso(cursoRepository.findById(crearTareaDTO.curso()).orElseThrow(() -> new RuntimeException("No existe un curso con ese nombre: " + crearTareaDTO.curso())))
                 .titulo(crearTareaDTO.titulo())
                 .descripcion(crearTareaDTO.descripcion())
                 .fechaEntrega(crearTareaDTO.fechaEntrega())
-                .puntajeMaximo(crearTareaDTO.puntajeMaximo())
+                .puntajeMaximo(20)
+                .semana(crearTareaDTO.semana())
                 .habilitado(true)
                 .build();
         tareaRepository.save(tarea);
@@ -52,7 +53,7 @@ public class TareaService {
     @Transactional
     @PreAuthorize("hasAnyRole('PROFESOR', 'ADMIN')")
     public TareDTO editarTarea(Long id, CrearTareaDTO editarTareaDTO){
-        Curso curso = cursoRepository.findByNombre(editarTareaDTO.curso()).orElseThrow(() -> new RuntimeException("No existe un curso con ese nombre: " + editarTareaDTO.curso()));
+        Curso curso = cursoRepository.findById(editarTareaDTO.curso()).orElseThrow(() -> new RuntimeException("No existe un curso con ese nombre: " + editarTareaDTO.curso()));
         Tarea tarea = tareaRepository.findById(id).orElseThrow(()-> new RuntimeException("No existe una tarea con el id: " + id));
         tarea.editarTarea(editarTareaDTO, curso);
         return new TareDTO(tarea);

@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("foro")
 public class TemaForoController {
 
     @Autowired
@@ -31,9 +32,9 @@ public class TemaForoController {
         return ResponseEntity.ok(temaForoService.listarTemaForoPorCurso(idCurso));
     }
 
-    @GetMapping("{idForo}")
-    public ResponseEntity<TemaForoDTO> mostrarTemaForoPorId(@PathVariable Long idForo){
-        return ResponseEntity.ok(temaForoService.mostrarTemaForoPorId(idForo));
+    @GetMapping("{semana}")
+    public ResponseEntity<TemaForoDTO> mostrarTemaForoPorId(@PathVariable Long semana){
+        return ResponseEntity.ok(temaForoService.mostrarTemaForoPorId(semana));
     }
 
     @DeleteMapping("{idForo}")
